@@ -73,4 +73,4 @@ if __name__ == '__main__':
         for k, v in solar_data.data.items():
             mqtt.publish(config['mqtt']['state_topic'] + '/' + k, payload=str(v), qos=0, retain=False)
 
-        time.sleep(args.poll_interval)
+        time.sleep(config['poll_interval'])
