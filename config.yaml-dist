@@ -9,5 +9,7 @@ mqtt:
     port: 1883
     user: ~
     pass: ~
+    auto_discovery_topic: homeassistant/sensor/solaredge_inverter
+    state_topic: my_home/garage/sensor/solaredge_inverter
 
 poll_interval: 3
