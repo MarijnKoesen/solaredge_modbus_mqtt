@@ -1,0 +1,13 @@
+modbus:
+    host: 127.0.0.1
+    port: 1502
+    timeout: 1
+    unit: 1
+
+mqtt:
+    host: 127.0.0.1
+    port: 1883
+    user: ~
+    pass: ~
+
+poll_interval: 3
