@@ -10,7 +10,15 @@ To make it safe and avoid passing credentials we're using a configuration file.
 mkdir /etc/solaredge_modbus_mqtt
 chmod 700 /etc/solaredge_modbus_mqtt
 cp config.yaml-dist /etc/solaredge_modbus_mqtt/config.yaml
-docker run --name=solaredge_modbus_mqtt --restart=always --volume=/etc/solaredge_modbus_mqtt/config.yaml:/app/config.yaml  marijnkoesen/solaredge_modbus_mqtt:latest
+docker run --name=solaredge_modbus_mqtt --restart=always --volume=/etc/solaredge_modbus_mqtt/config.yaml:/app/config.yaml marijnkoesen/solaredge_modbus_mqtt:latest
+```
+
+
+### Uninstall
+
+```shell
+docker update --restart=no solaredge_modbus_mqtt
+docker stop solaredge_modbus_mqtt
 ```
 
 
