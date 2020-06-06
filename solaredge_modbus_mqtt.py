@@ -9,6 +9,7 @@ import time
 import paho.mqtt.client as mqtt
 import yaml
 from solaredge_modbus_mqtt import SolarData
+from solaredge_modbus_mqtt import MyInverter
 from pymodbus.exceptions import ConnectionException
 
 if __name__ == '__main__':
@@ -30,7 +31,7 @@ if __name__ == '__main__':
         print('Cannot connect to MQTT on {0}:{1}, error: {2}'.format(config['mqtt']['host'], config['mqtt']['port'], err))
         sys.exit(1)
 
-    inverter = solaredge_modbus.Inverter(
+    inverter = MyInverter(
         host=config['modbus']['host'],
         port=config['modbus']['port'],
         timeout=config['modbus']['timeout'],
@@ -41,7 +42,8 @@ if __name__ == '__main__':
     publishedAutoDiscovery = False
     while run:
         try:
-            solar_data = SolarData(inverter.read_all())
+            raw = inverter.read()
+            solar_data = SolarData(raw)
         except ConnectionException as err:
             print('Cannot connect to SolarEdge Modbus server on {0}:{1}, error: {2}'.format(config['modbus']['host'], config['modbus']['port'], err))
             sys.exit(2)
