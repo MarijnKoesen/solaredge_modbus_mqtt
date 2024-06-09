@@ -39,6 +39,9 @@ docker run --detach --name=solaredge_modbus_mqtt --restart=always --volume=/etc/
 
 ```shell
 docker build -t solaredge_modbus_mqtt:latest .
+or
+docker buildx build --platform linux/amd64 solaredge_modbus_mqtt:latest .
+
 cp config.yaml-dist config.yaml
 docker run --volume=$PWD/config.yaml:/app/config.yaml solaredge_modbus_mqtt:latest
 ```
