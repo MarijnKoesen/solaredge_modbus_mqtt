@@ -52,6 +52,10 @@ if __name__ == '__main__':
 
         if (publishedAutoDiscovery == False):
             for k, v in solar_data.data.items():
+                if k in ['model', 'version', 'serialnumber']:
+                    # These are not numbers/measurements, and should not be autodiscovered as a sensor
+                    continue
+
                 message = {
                     'name': 'SolarEdge ' + k.replace('_', ' ').title(),
                     'unique_id': 'solaredge_' + k,
